@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react'
 
-import { getAmiiboWithName } from '../apiClient.ts'
-import { AmiiboCollection } from '../../models/amiibo.ts'
+import { getDisneyCharacters } from '../apiClient.ts'
+import { DisneyCharacterResponse } from '../../models/disney.ts'
 
 function App() {
-  const [collection, setCollection] = useState<AmiiboCollection | null>(null)
+  // const [collection, setCollection] = useState<AmiiboCollection | null>(null)
+  const [displayCharacters, setDisplayCharacters] =
+    useState<DisneyCharacterResponse | null>(null)
+
   const [error, setError] = useState<string | null>(null)
 
   // useEffect cannot return a promise, so we often define
   // an async function _inside_ the useEffect call
   useEffect(() => {
     async function update() {
-      const data = await getAmiiboWithName('Link')
+      const data = await getDisneyCharacters()
+      console.log(data.data[0].name)
       try {
-        setCollection(data)
+        setDisplayCharacters(data)
       } catch (err) {
         setError(String(err))
       }
@@ -29,20 +33,20 @@ function App() {
     return <p>Something went wrong: {error}</p>
   }
 
-  if (!collection) {
+  if (!displayCharacters) {
     return <>Loading...</>
   }
 
   return (
     <ul>
-      {collection.amiibo.map((value) => (
+      {/* {collection.amiibo.map((value) => (
         <li key={value.head + value.tail}>
           <h3>
             {value.name} - {value.amiiboSeries}
           </h3>
           <img src={value.image} alt={value.name} />
         </li>
-      ))}
+      ))} */}
     </ul>
   )
 }
