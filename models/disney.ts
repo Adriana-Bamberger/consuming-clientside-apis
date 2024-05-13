@@ -1,4 +1,4 @@
-interface DisneyCharacter {
+export interface DisneyCharacter {
   _id: number
   films: string[]
   shortFilms: string[]
@@ -16,7 +16,7 @@ interface DisneyCharacter {
   __v: number // This property might not be relevant in your application logic
 }
 
-interface DisneyCharacterInfo {
+export interface DisneyCharacterInfo {
   count: number
   totalPages: number
   previousPage: string | null

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import { getDisneyCharacters } from '../apiClient.ts'
 import { DisneyCharacterResponse } from '../../models/disney.ts'
+import { DisneyCharacter } from '../../models/disney.ts'
 
 function App() {
   // const [collection, setCollection] = useState<AmiiboCollection | null>(null)
@@ -34,19 +35,19 @@ function App() {
   }
 
   if (!displayCharacters) {
-    return <>Loading...</>
+    return <>Loading your Disney Characters...</>
   }
 
   return (
     <ul>
-      {/* {collection.amiibo.map((value) => (
-        <li key={value.head + value.tail}>
+      {displayCharacters.data.map((value, index) => (
+        <li key={index}>
           <h3>
-            {value.name} - {value.amiiboSeries}
+            {value.name} - {value.films}
           </h3>
-          <img src={value.image} alt={value.name} />
+          <img src={value.imageUrl} alt={value.name} />
         </li>
-      ))} */}
+      ))}
     </ul>
   )
 }
