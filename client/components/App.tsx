@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import { Header } from './Header.tsx'
 import { getDisneyCharacters } from '../apiClient.ts'
 import { DisneyCharacterResponse } from '../../models/disney.ts'
 import { DisneyCharacter } from '../../models/disney.ts'
@@ -39,19 +39,22 @@ function App() {
   }
 
   return (
-    <ul>
-      {displayCharacters.data.map((value, index) => (
-        <li key={index}>
-          <h3>
-            {value.name} - {value.films}
-          </h3>
-          <p>
-            {value.videoGames} - {value.sourceUrl}{' '}
-          </p>
-          <img src={value.imageUrl} alt={value.name} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <Header />
+      <ul>
+        {displayCharacters.data.map((value, index) => (
+          <li key={index}>
+            <h3>
+              {value.name} - {value.films}
+            </h3>
+            <p>
+              {value.videoGames} - {value.sourceUrl}{' '}
+            </p>
+            <img src={value.imageUrl} alt={value.name} />
+          </li>
+        ))}
+      </ul>
+    </>
   )
 }
 
