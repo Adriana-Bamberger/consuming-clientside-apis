@@ -45,6 +45,9 @@ function App() {
           <h3>
             {value.name} - {value.films}
           </h3>
+          <p>
+            {value.videoGames} - {value.sourceUrl}{' '}
+          </p>
           <img src={value.imageUrl} alt={value.name} />
         </li>
       ))}
